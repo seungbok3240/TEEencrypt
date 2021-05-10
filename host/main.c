@@ -25,7 +25,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 #define _CRT_SECURE_NO_WARNINGS
-#define _MAX_LEN 20
+#define _MAX_LEN 200
 
 #include <err.h>
 #include <stdio.h>
@@ -222,11 +222,11 @@ int main(int argc, char* argv[])
 			errx(1, "TEEC_InvokeCommand failed with code 0x%x origin 0x%x",
 				res, err_origin);
 		printf("Success Message decrypted %s\n", argv[2]);
-
+		
 		printf("========================File Save========================\n");
 		memcpy(ciphertext, op.params[0].tmpref.buffer, len);
 		printf("plaintext : %s\n", ciphertext);
-		fp = fopen("decryptedKey.txt", "wb");
+		fp = fopen("decryptedFile.txt", "wb");
 		if (fp == NULL)
 		{
 			fprintf(stderr, "File Open Error!\n");
@@ -234,7 +234,7 @@ int main(int argc, char* argv[])
 		}
 		fwrite(ciphertext, strlen(ciphertext), 1, fp);
 		fclose(fp);
-		printf("Success File Save!! File name is %s\n", "decryptedKey.txt");
+		printf("Success File Save!! File name is %s\n", "decryptedFile.txt");
 	}
 	/*
 	 * We're done with the TA, close the session and

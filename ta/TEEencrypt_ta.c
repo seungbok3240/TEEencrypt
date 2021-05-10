@@ -25,6 +25,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 #define _CRT_SECURE_NO_WARNINGS
+#define _MAX_LEN 200
 
 #include <tee_internal_api.h>
 #include <tee_internal_api_extensions.h>
@@ -137,7 +138,7 @@ static TEE_Result enc_message(uint32_t param_types,
 
 	char * in = (char *)params[0].memref.buffer;
 	int in_len = strlen (params[0].memref.buffer);
-	char encrypted [20]={0,};
+	char encrypted [_MAX_LEN]={0,};
 	
 	DMSG("\n");
 	DMSG ("Plaintext :  %s", in);
@@ -228,7 +229,7 @@ static TEE_Result den_message(uint32_t param_types,
 
 	char * in = (char *)params[0].memref.buffer;
 	int in_len = strlen (params[0].memref.buffer);
-	char decrypted [20]={0,};
+	char decrypted [_MAX_LEN]={0,};
 	
 	DMSG ("ciphertext :  %s", in);
 	memcpy(decrypted, in, in_len);
